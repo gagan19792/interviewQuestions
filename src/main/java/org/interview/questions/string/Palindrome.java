@@ -57,12 +57,25 @@ public class Palindrome {
         int right = filtered.length()-1;
         //Check for palindrome
         while(left<right){
-            if(filtered.charAt(left) != filtered.charAt(right)){
+            if(filtered.charAt(left++) != filtered.charAt(right--)){
                 return false;
             }
-            left++;
-            right--;
         }
         return true;
+    }
+    //Time : O(N)
+    //SPace : O(N)
+    public static boolean isPalindrome2(String s){
+        StringBuffer sb = new StringBuffer();
+        for(char ch: s.toCharArray()){
+            if(Character.isLetterOrDigit(ch)){
+                sb.append(Character.toLowerCase(ch));
+            }
+        }
+
+        String filtered = sb.toString();
+        String reveresed = sb.reverse().toString();
+
+        return (filtered.equals(reveresed));
     }
 }
