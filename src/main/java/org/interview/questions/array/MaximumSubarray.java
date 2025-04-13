@@ -17,4 +17,38 @@ package org.interview.questions.array;
 //Explanation: the maximum subarray is [-1], its sum is -1
 
 public class MaximumSubarray {
+
+    // Brute force solution:
+    // Time complexity: O(n³)
+    // Space complexity: O(1)
+    static int maximumSubarrayBF(int[] arr){
+        int maxSum = Integer.MIN_VALUE;
+        for(int i = 0; i < arr.length; i++){
+            for(int j = i; j < arr.length; j++){
+                int actualSum = 0;
+                for(int k = i; k <= j; k++) actualSum += arr[k];
+                maxSum = Math.max(maxSum, actualSum);
+            }
+        }
+        return maxSum;
+    }
+
+    // By using Kadane's algorithm:
+    // Time complexity: O(n)
+    // Space complexity: O(1)
+    static int maximumSubarray(int[] arr){
+        int globalSum = Integer.MIN_VALUE;
+        int localSum = 0;
+        for(int element : arr){;
+            localSum = Math.max(element, localSum + element);
+            globalSum = Math.max(globalSum, localSum);
+        }
+        return globalSum;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = new int[]{2, 3, -6, 4, 2, -8, 3};
+        System.out.println(maximumSubarrayBF(arr));
+    }
 }
+
