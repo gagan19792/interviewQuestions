@@ -1,6 +1,8 @@
 package org.interview.questions.array;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 //Solve the problem [Java]
 //Given an array of integers arr that contains n+1 elements between 1 and n inclusive, create a function that returns the duplicate element
@@ -17,6 +19,8 @@ public class FindDuplicate {
     public static void main(String[] args) {
         int []arr = {1, 4, 2, 2, 5, 2};
         System.out.println(findDuplicate(arr));
+        Set<Integer> set = new HashSet<>();
+        set.add(null);
     }
 
     public static int findDuplicate(int[] arr){
