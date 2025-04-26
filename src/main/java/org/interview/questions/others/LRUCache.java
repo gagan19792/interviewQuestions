@@ -21,7 +21,7 @@ public class LRUCache {
         private Node head;
         private Node tail;
 
-        public LRUCache(int capacity){
+        public  LRUCache(int capacity){
             this.capacity=capacity;
             map = new HashMap<>();
             head = new Node(0,0);
