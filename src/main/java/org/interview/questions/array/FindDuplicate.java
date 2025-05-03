@@ -1,8 +1,6 @@
 package org.interview.questions.array;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 //Solve the problem [Java]
 //Given an array of integers arr that contains n+1 elements between 1 and n inclusive, create a function that returns the duplicate element
@@ -17,10 +15,11 @@ import java.util.Set;
 public class FindDuplicate {
 
     public static void main(String[] args) {
+        List<List<Integer>> levels = new ArrayList<>();
+        System.out.println(levels.size());
         int []arr = {1, 4, 2, 2, 5, 2};
         System.out.println(findDuplicate(arr));
-        Set<Integer> set = new HashSet<>();
-        set.add(null);
+        System.out.println(findDuplicateSol(arr));
     }
 
     public static int findDuplicate(int[] arr){
@@ -32,5 +31,20 @@ public class FindDuplicate {
             else visited.put(element, true);
         }
         return 0;
+    }
+
+    public static int findDuplicateSol(int nums[]){
+        int slow = nums[0];;
+        int fast = nums[nums[0]];
+        while(slow != fast){
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+        slow =0;
+        while(slow != fast){
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+        return slow;
     }
 }

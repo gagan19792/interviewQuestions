@@ -3,7 +3,9 @@ package org.interview.questions.string;
 public class Anagram {
 
     public static void main(String[] args) {
+
         System.out.println(anagram("gagan" , "nagag"));
+        System.out.println(anagram("gagan" , "nagagq"));
     }
 
 //    Time : O(N+K)
