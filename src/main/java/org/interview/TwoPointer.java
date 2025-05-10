@@ -1,6 +1,7 @@
 package org.interview;
 
 import java.util.*;
+import java.util.regex.MatchResult;
 
 public class TwoPointer {
 
@@ -16,6 +17,46 @@ public class TwoPointer {
         System.out.println("Minimum Number of Moves to Make Palindrome : "+minMovesToMakePalindrom("eggeekgbbeg"));
         System.out.println("Count Pairs Whose Sum is Less than Target : "+countPairs(Arrays.asList(1,3,2,4,5), 6));
         System.out.println("Valid Palindrome II : "+isPalindromeII("tebbem"));
+        System.out.println("Trapping Rain Water : "+trappingRainWater(new int[] {0,1,0,2,1,0,1,3,2,1,2,1}));
+        System.out.println("Container With Most Water : "+maxArea(new int[] {1,8,6,2,5,4,8,3,7}));
+    }
+
+    private static int maxArea(int[] height) {
+    int maxArea = 0;
+    int left = 0;
+    int right = height.length-1;
+    while (left < right){
+        int width = right - left;
+        maxArea = Math.max(maxArea, Math.min(height[left], height[right]) * width);
+        if(height[left] <= height[right]){
+            left++;
+        }else{
+            right--;
+        }
+    }
+    return maxArea;
+    }
+
+    private static int trappingRainWater(int[] height) {
+        if(height == null || height.length <= 2)
+            return 0;
+        int result = 0 ;
+        int left = 0;
+        int right = height.length-1;
+        int leftM = height[left];
+        int rightM = height[right];
+        while(left < right){
+            if(leftM < rightM){
+                left++;
+                leftM = Math.max(leftM, height[left]);
+                result += leftM - height[left];
+            }else{
+                right--;
+                rightM = Math.max(rightM, height[right]);
+                result += rightM - height[right];
+            }
+        }
+        return result;
     }
 
     private static int countPairs(List<Integer> nums, int target) {
@@ -82,7 +123,7 @@ public class TwoPointer {
     }
 
     public static List<List<Integer>> threeSum(int[] nums) {
-        Arrays.sort(nums);
+            Arrays.sort(nums);
         List<List<Integer>> result = new ArrayList<>();
         int n = nums.length;
 
@@ -114,7 +155,6 @@ public class TwoPointer {
                 }
             }
         }
-        System.out.println(String.join(" ", Arrays.asList("A", "B", "B")));;
         return result;
     }
 

@@ -7,14 +7,17 @@ import java.util.Arrays;
 public class BubbleSort {
 
     public static int[]  bubbleSort(int[] array){
-        int n = array.length-1;
-        for(int i=n; i>0;i--){
-            for(int j=0; j <i; j++){
-                if(array[j] >array[j+1]){
-                    int temp = array[j];
-                    array[j] = array[j+1];
-                    array[j+1] = temp;
+        for(int i=0 ; i< array.length;i++){
+            boolean swapped = false;
+            for(int j= array.length-1; j>i;j--){
+                if(array[j] < array[j-1]){
+                    SortingUtil.swapElements(array, j, j-1);
+                    swapped = true;
                 }
+            }
+            SortingUtil.print(array);
+            if(!swapped){
+                break;
             }
         }
         return array;
@@ -22,6 +25,6 @@ public class BubbleSort {
 
     public static void main(String[] args) {
         int[] array = new int[] {1,5,3,2,6,7,4};
-        System.out.println("Bubble Sort : "+ Arrays.toString(bubbleSort(array)));
+        bubbleSort(array);
     }
 }
