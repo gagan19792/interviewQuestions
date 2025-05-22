@@ -3,6 +3,8 @@ package org.interview;
 import java.util.*;
 import java.util.regex.MatchResult;
 
+import static org.interview.questions.string.IsSubsequence.isSubsequence;
+
 public class TwoPointer {
 
     public static void main(String[] args) {
@@ -19,6 +21,29 @@ public class TwoPointer {
         System.out.println("Valid Palindrome II : "+isPalindromeII("tebbem"));
         System.out.println("Trapping Rain Water : "+trappingRainWater(new int[] {0,1,0,2,1,0,1,3,2,1,2,1}));
         System.out.println("Container With Most Water : "+maxArea(new int[] {1,8,6,2,5,4,8,3,7}));
+        System.out.println("Max Number of K-Sum Pairs : "+maxOperations(new int[] {1,2,3,4}, 5));
+        System.out.println("isSubsequence : "+isSubsequence("abc", "ahbgdc"));
+
+
+    }
+
+    private static int maxOperations(int[] nums, int k) {
+        Arrays.sort(nums);
+        int count = 0;
+        int left = 0;
+        int right = nums.length-1;
+        while(left < right){
+            if(nums[left]+ nums[right] < k){
+                left++;
+            } else if(nums[left]+ nums[right] > k){
+                right--;
+            }else{
+                left++;
+                right--;
+                count++;
+            }
+        }
+        return count;
     }
 
     private static int maxArea(int[] height) {
