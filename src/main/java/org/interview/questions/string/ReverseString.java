@@ -3,38 +3,27 @@ package org.interview.questions.string;
 public class ReverseString {
 
     public static void main(String[] args) {
-        char[] s = {'h', 'e', 'l', 'l', 'o'};
-        new ReverseString().reverseStringRecurrsion(s);
-        System.out.println(s);
+        reverserString(null);
+        reverserString("");
+        reverserString("ABC");
     }
 
-    private static void reverseStringTwoPointer(char[] s) {
-//        Time Complexity:
-//        The time complexity of this algorithm is O(n), where n is the length of the array. This is because we only pass through the array once, swapping elements.
-//
-//        Space Complexity:
-//        The space complexity is O(1) because we are using a constant amount of extra space for the temporary variable temp.
+    //    Time	O(n)
+    //    Space	O(n) (char array)
+    public static void reverserString(String s){
+        if(s == null || s.isEmpty()) return;
+        System.out.println("Actual String : "+s);
+        char[] arr = s.toCharArray();
         int left = 0;
-        int right = s.length-1;
+        int right = arr.length-1;
         while(left < right){
-            char temp = s[left];
-            s[left++] = s[right];
-            s[right--] = temp;
+            char tmp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = tmp;
+            left++;
+            right--;
         }
+        System.out.println("Reversed String : "+ new String(arr));
     }
 
-    public void reverseStringRecurrsion(char[] s){
-        helper(s, 0, s.length-1);
-    }
-
-    //Time : O(n), Space O(N)
-    private void helper(char[] s, int left, int right) {
-        if(left>=right){
-            return;
-        }
-        char tmp = s[left];
-        s[left++] = s[right];
-        s[right--] = tmp;
-        helper(s, left, right);
-    }
 }
